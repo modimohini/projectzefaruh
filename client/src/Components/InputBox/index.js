@@ -10,10 +10,11 @@ function Inputbox(props){
         value={props.value}
         onChange={props.onChange}
         placeholder={props.placeholder} 
-        type="text"
+        type={props.type}
         className="form-control" 
         
         />
+      
 
 
     )

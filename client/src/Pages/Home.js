@@ -1,11 +1,15 @@
 import React, { Component } from "react"
 import Container from '../Components/Container'
-import InputBox from '../Components/InputBox'
+// import InputBox from '../Components/InputBox'
+// import Nav from '../Components/Nav'
+import TextField from '@material-ui/core/TextField';
+// import MenuItem from '@material-ui/core/MenuItem';
 
 class Home extends Component {
 
     state = {
-        eventSearched: ""
+        eventSearched: "",
+        selectedDate: ""
     }
 
 
@@ -18,31 +22,56 @@ class Home extends Component {
 
     };
 
+    // const[selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
 
-    render() {
-        return (
 
+ handleDateChange= (date)=> {
+    console.log("in handledatechaNGE");
+}
+
+
+//this is going to need a get all saved events function
+
+
+render() {
+    return (
+        
 
             <Container>
+                <h1>Search Upcoming Events</h1>
 
 
-                <InputBox
+                <TextField
                     name="eventSearched"
                     value={this.state.eventSearched}
-                    placeholder="i.e. outdoor concerts, roll-outs,"
+                    placeholder="  i.e. outdoor concerts, roll-outs"
                     onChange={this.handleInputChange}
-                    label="searched-event-input"
+                    type="text"
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    style={{ margin: 8 }}
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+
 
                 //  label="eventSearch"
                 />
+            
+                {/* 
+THIS IS THE SIGN!!!!!!!!!!! */}
 
+            </Container >
 
-            </Container>
+   
 
-        )
-    }
+    )
+}
 
 }
+
+
 
 
 export default Home
