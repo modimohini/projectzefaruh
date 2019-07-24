@@ -1,6 +1,8 @@
 import React from "react"
 import { TextInput }from 'react-materialize'
 
+
+
 function Inputbox(props){
     console.log(props)
     return(
@@ -14,7 +16,7 @@ function Inputbox(props){
         className="form-control" 
         
         />
-      
+     
 
 
     )

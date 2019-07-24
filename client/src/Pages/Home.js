@@ -3,7 +3,8 @@ import Container from '../Components/Container'
 // import InputBox from '../Components/InputBox'
 // import Nav from '../Components/Nav'
 import TextField from '@material-ui/core/TextField';
-// import MenuItem from '@material-ui/core/MenuItem';
+import DatePicker from '../Components/DatePicker'
+import CategoryInput from "../Components/CategoryInput"
 
 class Home extends Component {
 
@@ -55,9 +56,12 @@ render() {
                         shrink: true,
                     }}
 
+                    
 
                 //  label="eventSearch"
                 />
+                <DatePicker/>
+                <CategoryInput/>
             
                 {/* 
 THIS IS THE SIGN!!!!!!!!!!! */}
