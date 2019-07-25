@@ -1,1 +1,1 @@
-CREATE database zefaruhevents;
+CREATE DATABASE zefaruhevents;

@@ -1,11 +1,11 @@
 const express = require("express");
-//  const path = require("path");
-const routes = require("./routes")
+const path = require('path')
+const routes = require("./routes");
 const session = require("express-session");
 
-// const passport = require("./config/passport")
+const passport = require("./config/passport")
 
-// LocalStrategy = require('passport-local').Strategy;
+LocalStrategy = require('passport-local').Strategy;
 
 const db = require('./models')
 
@@ -22,24 +22,20 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
-// app.use(passport.initialize());
-// app.use(passport.session());
-// app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 app.use(function (req, res, next) {
   res.locals.messages = require('express-messages')(req, res);
   next();
 });
 
-var routes = require("./controllers/controller.js");
 
  app.use(routes);
 // Define API routes here
 
 // Send every other request to the React app
 // Define any API routes before this runs
-
-
-
 
 app.get('/express_backend', (req, res) => {
   res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });

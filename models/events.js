@@ -1,18 +1,25 @@
+var Sequelize = require("sequelize");
+// sequelize (lowercase) references our connection to the DB.
+
 module.exports = function (sequelize, DataTypes) {
     var Event = sequelize.define('Event', {
-        eventName: DataTypes.STRING,
 
-        eventLocation: DataTypes.STRING,
+        eventName: { type: Sequelize.STRING, allowNull: false },
+
+        eventLocation: { type: Sequelize.STRING, allowNull: false },
         
         eventPriceRange: DataTypes.STRING,
     
-        eventDate: DataTypes.DATE,
+        eventDate:  { 
+            type: Sequelize.DATE, 
+            defaultValue: Sequelize.NOW 
+            },
             
         eventTime: DataTypes.TIME,
 
-        eventDescription: DataTypes.STRING,
+        eventDescription: { type: Sequelize.STRING, allowNull: false },
 
-        eventCategory: DataTypes.STRING,
+        eventCategory: { type: Sequelize.STRING, allowNull: false },
 
         eventImage: DataTypes.BLOB,
     

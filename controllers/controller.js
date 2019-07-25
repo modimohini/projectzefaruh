@@ -5,7 +5,7 @@ module.exports = function (app) {
     app.post("/api/events", function (req, res) {
         console.log(req.body);
         db.Event.create({
-           
+        
         }).then(function () {
             res.redirect(307, "/api/login");
         }).catch(function (err) {
@@ -16,7 +16,7 @@ module.exports = function (app) {
     });
 
     app.get("/api/events", function (req, res) {
-        db.Event.findAll().then(function (dbEvents) {
+        db.Event.findAll({}).then(function (dbEvents) {
             return res.json(dbEvents)
         })
     })
