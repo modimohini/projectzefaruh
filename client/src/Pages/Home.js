@@ -5,6 +5,8 @@ import Container from '../Components/Container'
 import TextField from '@material-ui/core/TextField';
 import DatePicker from '../Components/DatePicker'
 import CategoryInput from "../Components/CategoryInput"
+import SearchButton from "../Components/Button"
+
 
 class Home extends Component {
 
@@ -62,6 +64,7 @@ render() {
                 />
                 <DatePicker/>
                 <CategoryInput/>
+                <SearchButton/>
             
                 {/* 
 THIS IS THE SIGN!!!!!!!!!!! */}
