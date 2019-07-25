@@ -1,48 +1,25 @@
-// var express = require("express");
-// var router = express.Router();
-// var app = express()
-// var bodyParser = require("body-parser");
+var db = require("../models");
 
-// app.use(bodyParser.urlencoded({
-//     extended: false
-// }));
-// app.use(bodyParser.json());
+module.exports = function (app) {
 
-// const orm = require('../config/orm.js');
+    app.post("/api/events", function (req, res) {
+        console.log(req.body);
+        db.Event.create({
+           
+        }).then(function () {
+            res.redirect(307, "/api/login");
+        }).catch(function (err) {
+            console.log(err);
+            res.json(err)
+            // res.status(409).json(err.errors[0].message);
+        });
+    });
 
-// router.get("/", function (req, res) {
-//     orm.selectAll(function (error, data) {
-//         if (error) {
-//             console.log(error);
-//             res.sendStatus(500);
-//         } else {
-//             res.render('index', {
-//                 burger: data
-//             });
-//         }
-//     })
-// });
+    app.get("/api/events", function (req, res) {
+        db.Event.findAll().then(function (dbEvents) {
+            return res.json(dbEvents)
+        })
+    })
 
-// router.post("/", function (req, res) {
-//     orm.insertOne(req.body, function (error, data) {
-//         if (error) {
-//             console.log(error);
-//             res.sendStatus(500);
-//         } else {
-//             res.redirect("/")
 
-//         }
-//     })
-// })
-
-// router.put("/", function (req, res) {
-//     orm.updateOne(req.body, function (error, data) {
-//         if (error) {
-//             console.log(error);
-//             res.sendStatus(500);
-//         } else {
-//              res.json(data);
-//         }
-//     })
-// })
-// module.exports = router
+}
