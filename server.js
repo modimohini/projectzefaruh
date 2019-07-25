@@ -1,6 +1,6 @@
 const express = require("express");
 //  const path = require("path");
-
+const routes = require("./routes")
 const session = require("express-session");
 
 // const passport = require("./config/passport")
@@ -32,7 +32,7 @@ app.use(function (req, res, next) {
 
 var routes = require("./controllers/controller.js");
 
-// app.use(routes);
+ app.use(routes);
 // Define API routes here
 
 // Send every other request to the React app
