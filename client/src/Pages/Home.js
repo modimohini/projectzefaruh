@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import DatePicker from '../Components/DatePicker'
 import CategoryInput from "../Components/CategoryInput"
 import SearchButton from "../Components/Button"
+import API from "../utils/API";
 
 
 class Home extends Component {
@@ -28,16 +29,19 @@ class Home extends Component {
     // searchTicketMaster = query => {
     //     API.search(query)
     //     .then(res => {
-    //     console.log(res.data);
-    //     this.setState({ event: res.data });
+    //     console.log("respomse" + res);
+    //     // this.setState({ events: res.data });
     //     })
     //     .catch(err => console.log(err));
     //     };
 
     handleSubmit = event =>{
         // event.preventDefault()
+        API.search(this.state.eventSearched)
+            .then(res => {
+                console.log(res.data)
+            })
         // this.searchTicketMaster(this.state.eventSearched);
-        // API.getEvents(this.state.eventSearched)
         console.log("event searched state ",this.state.eventSearched, "event date: ", this.state.selectedDate )
         console.log("submiting!")
         }
