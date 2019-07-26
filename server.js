@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require('path')
-const routes = require("./routes");
+ const routes = require("./routes");
 const session = require("express-session");
 
 const passport = require("./config/passport")
@@ -24,7 +24,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(flash());
+// app.use(flash());
 app.use(function (req, res, next) {
   res.locals.messages = require('express-messages')(req, res);
   next();

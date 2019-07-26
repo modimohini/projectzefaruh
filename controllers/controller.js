@@ -1,9 +1,8 @@
 var db = require("../models");
 
-module.exports = function (app) {
+module.exports = {
 
-    app.post("/api/events", function (req, res) {
-        console.log(req.body);
+    create: function (req, res) {
         db.Event.create({
         
         }).then(function () {
@@ -13,13 +12,15 @@ module.exports = function (app) {
             res.json(err)
             // res.status(409).json(err.errors[0].message);
         });
-    });
+    },
 
-    app.get("/api/events", function (req, res) {
+    findAll: function (req, res) {
         db.Event.findAll({}).then(function (dbEvents) {
             return res.json(dbEvents)
         })
-    })
+    },
 
+    findById: function(req, res) {},
+    remove: function(req, res) {}
 
 }
