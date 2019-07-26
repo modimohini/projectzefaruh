@@ -26,10 +26,6 @@ class Home extends Component {
     };
 
 
-
-
-
-
     handleSubmit = ()=>{
     console.log("submiting!")
     }
@@ -69,8 +65,7 @@ class Home extends Component {
                 <SearchButton 
                 onClick={() => this.handleSubmit()}/>
 
-                {/* 
-THIS IS THE SIGN!!!!!!!!!!! */}
+               
 
             </Container >
 
