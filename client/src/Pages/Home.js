@@ -25,20 +25,21 @@ class Home extends Component {
 
     };
 
-    // const[selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
 
 
- handleDateChange= (date)=> {
-    console.log("in handledatechaNGE");
-}
 
 
-//this is going to need a get all saved events function
+
+    handleSubmit = ()=>{
+    console.log("submiting!")
+    }
+
+    //this is going to need a get all saved events function
 
 
-render() {
-    return (
-        
+    render() {
+        return (
+
 
             <Container>
                 <h1>Search Upcoming Events</h1>
@@ -58,23 +59,25 @@ render() {
                         shrink: true,
                     }}
 
-                    
+
 
                 //  label="eventSearch"
                 />
-                <DatePicker/>
-                <CategoryInput/>
-                <SearchButton/>
-            
+                <DatePicker 
+                />
+                <CategoryInput />
+                <SearchButton 
+                onClick={() => this.handleSubmit()}/>
+
                 {/* 
 THIS IS THE SIGN!!!!!!!!!!! */}
 
             </Container >
 
-   
 
-    )
-}
+
+        )
+    }
 
 }
 
