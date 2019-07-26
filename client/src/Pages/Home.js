@@ -12,12 +12,12 @@ class Home extends Component {
 
     state = {
         eventSearched: "",
-        selectedDate: ""
+        selectedDate: "",
+        events: []
     }
 
 
     handleInputChange = event => {
-
         const { name, value } = event.target;
         this.setState({
             [name]: value
@@ -25,10 +25,22 @@ class Home extends Component {
 
     };
 
+    // searchTicketMaster = query => {
+    //     API.search(query)
+    //     .then(res => {
+    //     console.log(res.data);
+    //     this.setState({ event: res.data });
+    //     })
+    //     .catch(err => console.log(err));
+    //     };
 
-    handleSubmit = ()=>{
-    console.log("submiting!")
-    }
+    handleSubmit = event =>{
+        // event.preventDefault()
+        // this.searchTicketMaster(this.state.eventSearched);
+        // API.getEvents(this.state.eventSearched)
+        console.log("event searched state ",this.state.eventSearched, "event date: ", this.state.selectedDate )
+        console.log("submiting!")
+        }
 
     //this is going to need a get all saved events function
 
@@ -60,6 +72,7 @@ class Home extends Component {
                 //  label="eventSearch"
                 />
                 <DatePicker 
+                // name="selectedDate"
                 />
                 <CategoryInput />
                 <SearchButton 
