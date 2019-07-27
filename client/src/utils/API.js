@@ -1,24 +1,25 @@
 
 import axios from "axios";
-  
-const beforeAPIKEY = '&apikey='
 
-const APIKEY =  process.env.APIKEY1
+// const beforeAPIKEY = '&apikey='
 
-const BASEURL = "https://app.ticketmaster.com/discovery/v2/events.json?"
+// const APIKEY =  process.env.APIKEY1
 
-const COUNTRY = "&countryCode=US"
+// const BASEURL = "https://app.ticketmaster.com/discovery/v2/events.json?"
 
-const keyword = "&keyword="
+// const COUNTRY = "&countryCode=US"
 
-const STATE = "&stateCode=CA"
+// const keyword = "&keyword="
 
-const CITY = "&city=losangeles"
+// const STATE = "&stateCode=CA"
 
+// const CITY = "&city=losangeles"
+// https://app.ticketmaster.com/discovery/v2/events.json?&keyword=lady&stateCode=CA
 // Export an object with a "search" method that searches the API for the passed query
 export default {
-  search: function(query) {
-    return axios.get(BASEURL + keyword + query + STATE + CITY + COUNTRY + beforeAPIKEY + APIKEY );
+  search: function(query, latlon) {
+    return axios.get(`https://app.ticketmaster.com/discovery/v2/events.json?keyword=${query}&countryCode=US&postalCode=90002&apikey=x0rM0scO6t5YbSgLQko36IXk0ZCgXMw7&latlong=${latlon}
+    `);
   },
   // getEvents: function(id) {
   //   return axios.get("/api/events/" + id);
