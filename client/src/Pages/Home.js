@@ -107,7 +107,8 @@ class Home extends Component {
               dates={event.dates.start.localDate}
               image= {event.images[0]}
               note={event.pleaseNote}
-              tickets= {event.ticketLimit.url}
+              key= {event.id}
+            //   tickets= {event.ticketLimit.url}
               />
 
 
