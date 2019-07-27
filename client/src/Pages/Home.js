@@ -24,51 +24,16 @@ class Home extends Component {
 
 
 
-    // searchTicketMaster = (query, latlon) => {
-    //     API.search(query, latlon)
-    //     .then(res => {
-    //     console.log("response" + res);
-    //     // this.setState({ events: res.data });
-    //     })
-    //     .catch(err => console.log(err));
-    //     };
 
-    // showError = error => {
-    //     switch(error.code) {
-    //         case error.PERMISSION_DENIED:
-    //             alert("User denied the request for Geolocation.")
-    //             break;
-    //         case error.POSITION_UNAVAILABLE:
-    //             alert("Location information is unavailable.")
-    //             break;
-    //         case error.TIMEOUT:
-    //             alert("The request to get user location timed out.")
-    //             break;
-    //         case error.UNKNOWN_ERROR:
-    //             alert("An unknown error occurred.")
-    //             break;
-    //     }
-    // }
-    
-    // addMarker = (map, event) => {
-    //   var marker = new google.maps.Marker({
-    //     position: new google.maps.LatLng(event._embedded.venues[0].location.latitude, event._embedded.venues[0].location.longitude),
-    //     map: map
-    //   });
-    //   marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
-    //   console.log(marker);
-    // }
-
-    // initMap = (position, json)  => {
-    //   var mapDiv = document.getElementById('map');
-    //   var map = new google.maps.Map(mapDiv, {
-    //     center: {lat: position.coords.latitude, lng: position.coords.longitude},
-    //     zoom: 10
-    //   });
-    //   for(var i=0; i<json.page.size; i++) {
-    //     addMarker(map, json._embedded.events[i]);
-    //   }
-    // }
+    searchTicketMaster = (query) => {
+        console.log(this.props.coords)
+        API.search(query)
+        .then(res => {
+        console.log("response" + res);
+        this.setState({ events: res.data._embedded.events })
+    })
+        .catch(err => console.log(err));
+        };
     
 
     handleInputChange = event => {
@@ -83,37 +48,20 @@ class Home extends Component {
         this.setState({ selectedDate: date })
     }
 
-    // searchTicketMaster = query => {
-    //     API.search(query)
-    //     .then(res => {
-    //     console.log("respomse" + res);
-    //     // this.setState({ events: res.data });
-    //     })
-    //     .catch(err => console.log(err));
-    //     };
+    
 
-    handleSubmit = event =>{
-        event.preventDefault()
-        API.search(this.state.eventSearched)
-            .then(res => {
-                this.setState({ events: res.data._embedded.events })
-                console.log(res.data._embedded.events)
-            })
-            .catch(err => console.log(err))
-        // this.searchTicketMaster(this.state.eventSearched);
+    handleSubmit = event => {
+        event.preventDefault() 
+        this.searchTicketMaster(this.state.eventSearched)
         console.log("events", this.state.events)
-        this.searchTicketMaster(this.state.eventSearched, latlon);
         console.log("event searched state ",this.state.eventSearched, "event date: ", this.state.selectedDate )
         console.log("submiting!")
         }
 
-    //this is going to need a get all saved events function
-
-
     render() {
         return (
             <>
-            <Location></Location>
+            <Location coords={this.props.coords}></Location>
 
             <Container>
                 <h1>Search Upcoming Events</h1>
@@ -154,9 +102,9 @@ class Home extends Component {
                 </div>
 
                 <SearchButton 
-                onClick={() => this.handleSubmit()}/>
+                onClick={(event) => this.handleSubmit(event)}/>
                 <Container>
-                
+                {console.log('PROCESS', process.env.REACT_APP_API_KEY1)}
           {this.state.events.map( event => {
               return (<ResultCard
               title= {event.name}
