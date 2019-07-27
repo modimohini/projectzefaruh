@@ -105,7 +105,7 @@ class Home extends Component {
               return (<ResultCard
               title= {event.name}
               dates={event.dates.start.localDate}
-              image= {event.images[0]}
+              image= {event.images[0].url}
               note={event.pleaseNote}
               key= {event.id}
             //   tickets= {event.ticketLimit.url}
