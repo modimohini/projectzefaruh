@@ -11,6 +11,8 @@ const db = require('./models')
 
 const PORT = process.env.PORT || 3001;
 const app = express();
+require('dotenv').config({path: path.resolve(__dirname+'/.env')});
+
 // const mysql = require('mysql');
 
 // Define middleware here
@@ -19,6 +21,8 @@ app.use(express.json());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
+  require('dotenv').load();
+
 }
 
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));

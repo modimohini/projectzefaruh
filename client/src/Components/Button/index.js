@@ -25,8 +25,8 @@ export default function SearchButton(props) {
     
       <div>
         
-        <Fab variant="extended" color="primary" aria-label="Add" className={classes.margin} onClick={props.onClick}>
-          <Search className={classes.extendedIcon}  />
+        <Fab variant="extended" color="primary" aria-label="Add" className={classes.margin} {...props}>
+          <Search className={classes.extendedIcon} {...props} />
           Search
         </Fab>
       </div>

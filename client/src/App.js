@@ -6,6 +6,7 @@ import "./App.css";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import UserPage from "./Pages/UserPage";
+require('dotenv').config()
 
 class App extends Component {
   render() {
