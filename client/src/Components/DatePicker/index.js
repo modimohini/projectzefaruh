@@ -15,15 +15,8 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MaterialUIPickers() {
-  // The first commit of Material-UI
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
-
+const MaterialUIPickers = ({ selectedDate, setSelectedDate }) => {
   const classes = useStyles();
-
-  function handleDateChange(date) {
-    setSelectedDate(date);
-  }
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -33,7 +26,7 @@ export default function MaterialUIPickers() {
           id="mui-pickers-date"
           label="Date"
           value={selectedDate}
-          onChange={handleDateChange}
+          onChange={ date => setSelectedDate(date) }
           KeyboardButtonProps={{
             'aria-label': 'change date',
           
@@ -44,12 +37,16 @@ export default function MaterialUIPickers() {
           id="mui-pickers-time"
           label="Time"
           value={selectedDate}
-          onChange={handleDateChange}
+          onChange={ date => setSelectedDate(date) }
           KeyboardButtonProps={{
             'aria-label': 'change time',
           }}
         />
+
+       
       </Grid>
     </MuiPickersUtilsProvider>
   );
 }
+
+export default MaterialUIPickers
