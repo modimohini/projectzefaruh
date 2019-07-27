@@ -8,6 +8,7 @@ import CategoryInput from "../Components/CategoryInput"
 import SearchButton from "../Components/Button"
 import Location from "../Components/Location"
 import API from "../utils/API";
+import ResultCard from  "../Components/ResultCard"
 
  var latlon;
 //  var showPosition;
@@ -16,10 +17,9 @@ import API from "../utils/API";
 class Home extends Component {
 
     state = {
-        eventSearched: "",
-        selectedDate: "",
         events: [],
-        nameofmyself: "kate"
+        eventSearched: "",
+        selectedDate: new Date(),
     }
 
 
@@ -79,12 +79,29 @@ class Home extends Component {
 
     };
 
+    setSelectedDate = date => {
+        this.setState({ selectedDate: date })
+    }
+
+    // searchTicketMaster = query => {
+    //     API.search(query)
+    //     .then(res => {
+    //     console.log("respomse" + res);
+    //     // this.setState({ events: res.data });
+    //     })
+    //     .catch(err => console.log(err));
+    //     };
+
     handleSubmit = event =>{
         event.preventDefault()
         API.search(this.state.eventSearched)
             .then(res => {
-                console.log(res.data)
+                this.setState({ events: res.data._embedded.events })
+                console.log(res.data._embedded.events)
             })
+            .catch(err => console.log(err))
+        // this.searchTicketMaster(this.state.eventSearched);
+        console.log("events", this.state.events)
         this.searchTicketMaster(this.state.eventSearched, latlon);
         console.log("event searched state ",this.state.eventSearched, "event date: ", this.state.selectedDate )
         console.log("submiting!")
@@ -100,6 +117,7 @@ class Home extends Component {
 
             <Container>
                 <h1>Search Upcoming Events</h1>
+                <div className="row">
 
            {console.log(this.props)}
                 <TextField
@@ -116,16 +134,45 @@ class Home extends Component {
                         shrink: true,
                     }}
 
-
-
-                //  label="eventSearch"
+                    
+                    //  label="eventSearch"
                 />
-                <DatePicker 
+                    </div>
+
+                    <div className="row">
+                    <div className="col m8">
+                <DatePicker
+                    selectedDate={ this.state.selectedDate }
+                    setSelectedDate={ this.setSelectedDate }
                 // name="selectedDate"
                 />
+                </div>
+                <div className="col m4">
                 <CategoryInput />
+                    
+                </div>
+                </div>
+
                 <SearchButton 
                 onClick={() => this.handleSubmit()}/>
+                <Container>
+                
+          {this.state.events.map( event => {
+              return (<ResultCard
+              title= {event.name}
+              dates={event.dates.start.localDate}
+              image= {event.images[0].url}
+              note={event.pleaseNote}
+              key= {event.id}
+            //   tickets= {event.ticketLimit.url}
+              />
+
+
+              )
+          })}
+        
+
+                </Container>
 
             
             <div className="location">
