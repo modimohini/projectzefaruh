@@ -6,31 +6,61 @@ import TextField from '@material-ui/core/TextField';
 import DatePicker from '../Components/DatePicker'
 import CategoryInput from "../Components/CategoryInput"
 import SearchButton from "../Components/Button"
-import Location from "../Components/Location"
 import API from "../utils/API";
 import ResultCard from  "../Components/ResultCard"
+import Geohash from 'latlon-geohash';
 
- var latlon;
+//  var latlon;
 //  var showPosition;
 //  var showError
 
 class Home extends Component {
-
-    state = {
+constructor(){
+    super()
+    this.state = {
+        location: {
+            lat: 0,
+            lng: 0
+        },
         events: [],
         eventSearched: "",
         selectedDate: new Date(),
+        geohash: 0
+    }
+}
+
+    componentDidMount() {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                let lat = position.coords.latitude
+                let lng = position.coords.longitude
+
+                const geohash = Geohash.encode(lat, lng, 6)
+                console.log("latitude:" + lat + "longitude" + lng)  
+                console.log("grab geohash" +geohash)
+
+                this.setState({
+                    geohash: geohash,
+                    location: {
+                      lat: lat,
+                      lng: lng
+                    },
+                    
+                  })
+                  console.log("Second geohash" + geohash)
+            }
+        )
     }
 
 
-
-
     searchTicketMaster = (query) => {
-        console.log(this.props.coords)
-        API.search(query)
+         console.log("geohash" + this.state.geohash)
+        API.search(query, this.state.geohash)
         .then(res => {
-        console.log("response" + res);
-        this.setState({ events: res.data._embedded.events })
+        console.log("response" + res.data._embedded.events);
+        this.setState({ 
+            events: res.data._embedded.events 
+        })
     })
         .catch(err => console.log(err));
         };
@@ -53,21 +83,17 @@ class Home extends Component {
     handleSubmit = event => {
         event.preventDefault() 
         this.searchTicketMaster(this.state.eventSearched)
-        console.log("events", this.state.events)
+        // console.log("events", this.state.events)
         console.log("event searched state ",this.state.eventSearched, "event date: ", this.state.selectedDate )
-        console.log("submiting!")
         }
 
     render() {
         return (
             <>
-            <Location coords={this.props.coords}></Location>
-
             <Container>
                 <h1>Search Upcoming Events</h1>
                 <div className="row">
 
-           {console.log(this.props)}
                 <TextField
                     name="eventSearched"
                     value={this.state.eventSearched}
@@ -104,7 +130,6 @@ class Home extends Component {
                 <SearchButton 
                 onClick={(event) => this.handleSubmit(event)}/>
                 <Container>
-                {console.log('PROCESS', process.env.REACT_APP_API_KEY1)}
           {this.state.events.map( event => {
               return (<ResultCard
               title= {event.name}
@@ -112,6 +137,7 @@ class Home extends Component {
               image= {event.images[0].url}
               note={event.pleaseNote}
               key= {event.id}
+              locationName={event.venue.name}
             //   tickets= {event.ticketLimit.url}
               />
 
@@ -121,18 +147,6 @@ class Home extends Component {
         
 
                 </Container>
-
-            
-            <div className="location">
-            {/* <Map
-                google={this.props.google}
-                zoom={8}
-                //  style={mapStyles}
-                initialCenter={{ lat: this.props.lat, lng: this.props.lon}}
-        /> */}
-
-            </div>
-
             </Container >
         </>
         )

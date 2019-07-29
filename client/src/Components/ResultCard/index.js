@@ -11,7 +11,7 @@ function ResultCard(props){
   <h2 className="header">{props.title}</h2>
   <div className="card horizontal">
     <div className="card-image">
-      <img src={props.image}/>
+      <img src={props.image} alt="event"/>
     </div>
     <div className="card-stacked">
       <div className="card-content">
@@ -21,6 +21,8 @@ function ResultCard(props){
       </div>
       <div className="card-action">
         <a href={props.tickets}>Get Tickets</a>
+        {props.locationName}
+
       </div>
     </div>
   </div>
