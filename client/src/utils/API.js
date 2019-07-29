@@ -18,7 +18,7 @@ import axios from "axios";
 // Export an object with a "search" method that searches the API for the passed query
 export default {
   search: function(query, latlon) {
-    return axios.get(`https://app.ticketmaster.com/discovery/v2/events.json?keyword=${query}&countryCode=US&postalCode=90002&apikey=x0rM0scO6t5YbSgLQko36IXk0ZCgXMw7&latlong=${latlon}
+    return axios.get(`https://app.ticketmaster.com/discovery/v2/events.json?keyword=${query}&countryCode=US&postalCode=90002&apikey=x0rM0scO6t5YbSgLQko36IXk0ZCgXMw7
     `);
   },
   // getEvents: function(id) {

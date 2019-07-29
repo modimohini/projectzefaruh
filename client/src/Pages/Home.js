@@ -10,7 +10,7 @@ import Location from "../Components/Location"
 import API from "../utils/API";
 import ResultCard from  "../Components/ResultCard"
 
- var latlon;
+//  var latlon;
 //  var showPosition;
 //  var showError
 
@@ -102,8 +102,8 @@ class Home extends Component {
             .catch(err => console.log(err))
         // this.searchTicketMaster(this.state.eventSearched);
         console.log("events", this.state.events)
-        this.searchTicketMaster(this.state.eventSearched, latlon);
-        console.log("event searched state ",this.state.eventSearched, "event date: ", this.state.selectedDate )
+        // this.searchTicketMaster(this.state.eventSearched, latlon);
+        // console.log("event searched state ",this.state.eventSearched, "event date: ", this.state.selectedDate )
         console.log("submiting!")
         }
 
@@ -154,7 +154,7 @@ class Home extends Component {
                 </div>
 
                 <SearchButton 
-                onClick={() => this.handleSubmit()}/>
+                onClick={(event) => this.handleSubmit(event)}/>
                 <Container>
                 
           {this.state.events.map( event => {
@@ -164,6 +164,7 @@ class Home extends Component {
               image= {event.images[0].url}
               note={event.pleaseNote}
               key= {event.id}
+              alt= {event.name}
             //   tickets= {event.ticketLimit.url}
               />
 

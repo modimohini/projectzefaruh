@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   },
 });
 
-const MaterialUIPickers = ({ selectedDate, setSelectedDate }) => {
+const MaterialUIDatePickers = ({ selectedDate, setSelectedDate }) => {
   const classes = useStyles();
 
   return (
@@ -49,4 +49,6 @@ const MaterialUIPickers = ({ selectedDate, setSelectedDate }) => {
   );
 }
 
-export default MaterialUIPickers
+export default MaterialUIDatePickers
+
+// const 

@@ -4,11 +4,11 @@ import { Link } from "react-router-dom"
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import SearchIcon from '@material-ui/icons/Search';
+import HomeIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { red } from "@material-ui/core/colors";
+// import { red } from "@material-ui/core/colors";
 
 
 const sections = [
@@ -39,7 +39,7 @@ const sections = [
       
     },
     toolbarLink: {
-      padding: theme.spacing(5),
+      padding: theme.spacing(10),
       flexShrink: 0,
     
       
@@ -83,17 +83,18 @@ function Nav() {
          Zefaruh
         </Typography>
         <IconButton>
-          <SearchIcon />
+          <HomeIcon />
         </IconButton>
         <Button variant="outlined" size="small">
           Sign up
         </Button>
       </Toolbar>
-      <Toolbar component="nav" variant="dense" className='white' >
+      <Toolbar component="nav" variant="dense" className='light-green darken-4' >
         {sections.map(section => (
           <Link
+            to="/"
             color="inherit"
-            noWrap
+           nowrap
             key={section}
             variant="body2"
             href="#"
