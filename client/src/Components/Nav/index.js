@@ -27,13 +27,17 @@ const sections = [
   const useStyles = makeStyles(theme => ({
     toolbar: {
       borderBottom: `1px solid `,
+      padding: `20px`
      
     },
     toolbarTitle: {
       flex: 1,
     },
     toolbarSecondary: {
-      justifyContent: 'space-between',
+      direction:'row',
+    
+      alignItems:'center',
+      justifyContent: 'space-evenly',
       overflowX: 'auto',
       boxShaddoe: 'none'
       
@@ -71,7 +75,7 @@ function Nav() {
         <React.Fragment>
                <CssBaseline/>
         <Toolbar className={classes.toolbar}>
-        <Button size="small">Account Log In</Button>
+        <Button size="small">Sign up</Button>
         <Typography
           component="h2"
           variant="h5"
@@ -82,14 +86,14 @@ function Nav() {
         >
          Zefaruh
         </Typography>
-        <IconButton>
+        {/* <IconButton>
           <HomeIcon />
-        </IconButton>
+        </IconButton> */}
         <Button variant="outlined" size="small">
-          Sign up
+          Account Login
         </Button>
       </Toolbar>
-      <Toolbar component="nav" variant="dense" className='light-green darken-4' >
+      {/* <Toolbar component="nav" variant="dense" className='light-green darken-4' >
         {sections.map(section => (
           <Link
             to="/"
@@ -103,7 +107,7 @@ function Nav() {
             {section}
           </Link>
         ))}
-      </Toolbar>
+      </Toolbar> */}
      
       </React.Fragment>
 
