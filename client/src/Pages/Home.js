@@ -173,10 +173,10 @@ constructor(){
               tickets={event.url}
               
               />
-
-
               )
           })}
+
+          {/* TicketMaster results card */}
          {/* {this.state.events.map( event => {
               return (<ResultCard
               title={event.name ? event.name.text : ""} 

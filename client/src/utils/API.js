@@ -14,7 +14,11 @@ export default {
  
   }, 
   searchEventBrite: function(){
-    return axios.get('https://www.eventbriteapi.com/v3/events/search/?token=IM2RWZMHUGYL7CNUWLGA')
+    return axios.get(`https://www.eventbriteapi.com/v3/events/search/?token=${token}`)
+  },
+
+  searchTradeGov: function(){
+    return axios.get('https://www.eventbriteapi.com/v3/events/search/?token=')
   },
     // Promise.all([ticketMaster, eventBrite]).then(function(values) {
     //   return values;
