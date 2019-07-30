@@ -1,6 +1,6 @@
 
 import axios from "axios";
-
+token = process.env.REACT_APP_APIKEY
 
 // Export an object with a "search" method that searches the API for the passed query
 export default {
