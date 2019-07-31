@@ -30,7 +30,6 @@ constructor(){
         geohash: 0
     }
 }
-
     componentDidMount() {
         navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -53,8 +52,6 @@ constructor(){
             }
         )
     }
-
-
     // searchTicketMaster = (query, query2, query3, query4) => {
     //      console.log("geohash" + this.state.geohash)
     //      console.log("coords" + this.state.lat + this.state.lng)
@@ -79,6 +76,17 @@ constructor(){
         this.setState({ 
             events: res.data.events
         })
+    })
+        .catch(err => console.log(err));
+        };
+        searchEventsTradeGov = (query) => {
+        API.searchTradeGov(query)
+        .then(res => {
+        var events = res.data.events
+        console.log({ events });
+        // this.setState({ 
+        //     events: res.data.events
+        // })
     })
         .catch(err => console.log(err));
         };
