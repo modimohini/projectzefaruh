@@ -11,6 +11,7 @@ import ResultCard from "../Components/ResultCard"
 import Geohash from 'latlon-geohash';
 import TimePicker from "../Components/TimePicker";
 var moment = require('moment');
+
 //  var latlon;
 //  var showPosition;
 //  var showError
@@ -36,7 +37,6 @@ class Home extends Component {
 
         }
     }
-
     componentDidMount() {
         navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -53,25 +53,50 @@ class Home extends Component {
                         lat: lat,
                         lng: lng
                     },
+                    lat: lat,
+                    lng: lng
                 })
-                console.log("Second geohash" + geohash)
             }
         )
     }
-
-
     searchTicketMaster = (query, query2, query3, query4) => {
-        console.log("geohash" + this.state.geohash)
+         console.log("geohash" + this.state.geohash)
+         console.log("coords" + this.state.lat + this.state.lng)
         API.search(query, query2, query3, query4)
-            .then(res => {
-                var events = res.data._embedded.events
-                console.log({ events });
-                this.setState({
-                    events: res.data._embedded.events
-                })
-            })
-            .catch(err => console.log(err));
-    };
+        .then(res => {
+        var events = res.data._embedded.events
+        console.log({ events });
+        this.setState({ 
+            events: res.data._embedded.events 
+        })
+    })
+        .catch(err => console.log(err));
+        };
+
+    // eventBriteSearch = (query) => {
+    //     console.log("geohash" + this.state.geohash)
+    //     console.log("coords" + this.state.lat + this.state.lng)
+    //     API.searchEventBrite(query)
+    //         .then(res => {
+    //             var events = res.data.events
+    //             console.log({ events });
+    //             this.setState({
+    //                 events: res.data.events
+    //             })
+    //         })
+    //         .catch(err => console.log(err));
+    // };
+    // searchEventsTradeGov = (query) => {
+    //     API.searchTradeGov(query)
+    //         .then(res => {
+    //             var events = res.data.events
+    //             console.log({ events });
+    //             // this.setState({ 
+    //             //     events: res.data.events
+    //             // })
+    //         })
+    //         .catch(err => console.log(err));
+    // };
 
 
     handleInputChange = event => {
@@ -102,16 +127,13 @@ class Home extends Component {
     handleSubmit = event => {
         event.preventDefault()
         this.searchTicketMaster(this.state.eventSearched, this.state.geohash, this.state.eventLocationSearched, moment(this.state.selectedDate).format('YYYY[-]MM[-]DDTHH:mm:ss'))
-        // console.log("events", this.state.events)
+        // this.eventBriteSearch(this.state.eventSearched)
         console.log("event searched state ", this.state.eventSearched, "event date: ", moment(this.state.selectedDate).format('YYYY MM DDTHH:mm:ss'))
     }
 
-
-
-
     render() {
         return (
-            <>
+          
                 <Container>
                     <h1>Search Upcoming Events</h1>
                     <div className="row">
@@ -166,57 +188,72 @@ class Home extends Component {
                     </div>
 
                     <div className="row">
-                        <div className="col m4 s12">
-                            <DatePicker
-                                selectedDate={this.state.selectedDate}
-                                setSelectedDate={this.setSelectedDate}
-                            // name="selectedDate"
-                            />
-                        </div>
-                        <div className="col m4 s12">
+                    <div className="col m4 s12">
+                        <DatePicker
+                            selectedDate={this.state.selectedDate}
+                            setSelectedDate={this.setSelectedDate}
+                        // name="selectedDate"
+                        />
+                    </div>
+                    <div className="col m4 s12">
 
-                            <TimePicker
-                                selectedDate={this.state.selectedDate}
-                                setSelectedDate={this.setSelectedDate} />
-                        </div>
-                        <div className="col m4 s12">
-                            <CategoryInput />
+                        <TimePicker
+                            selectedDate={this.state.selectedDate}
+                            setSelectedDate={this.setSelectedDate} />
+                    </div>
+                    <div className="col m4 s12">
+                        <CategoryInput />
 
-                        </div>
-                        <SearchButton
-                            onClick={(event) => this.handleSubmit(event)} />
+                    </div>
+                    <SearchButton
+                        onClick={(event) => this.handleSubmit(event)} />
                     </div>
 
-                 
-                        <div className="card-columns">
-                            {this.state.events.map(event => {
-                                return (<ResultCard
-                                    expanded={this.state.expanded}
-                                    handleExpandClick={this.setExpanded}
-                                    handleUnExpandClick={this.setUnExpanded}
-                                    title={event.name}
-                                    dates={event.dates.start.localDate}
-                                    image={event.images[0].url}
-                                    note={event.pleaseNote}
-                                    key={event.id}
-                                    locationName={event._embedded.venues[0].name}
-                                    // tickets={event._embedded.attractions[0].url}
-                                    locationAddress={event._embedded.venues[0].address.line1}
-                                    locationCity={event._embedded.venues[0].city.name}
-                                    locationPostalCode={event._embedded.venues[0].postalCode}
-                                    locationState={event._embedded.venues[0].state.name}
-                                    locationDistance={event._embedded.venues[0].distance}
-                                    locationDistanceUnits={event._embedded.venues[0].units}
-                                />
+
+                <div className="card-columns">
 
 
-                                )
-                            })}
-                        </div>
 
-                   
-                </Container >
-            </>
+                    {/* {this.state.events.map(event => {
+                        return (<ResultCard
+                            title={event.name.text}
+                            dates={event.start.local}
+                            image={event.logo.url}
+                            note={event.summary}
+                            key={event.id}
+                            tickets={event.url}
+
+                        />
+                        )
+                    })} */}
+                    {this.state.events.map(event => {
+                        return (<ResultCard
+                            expanded={this.state.expanded}
+                            handleExpandClick={this.setExpanded}
+                            handleUnExpandClick={this.setUnExpanded}
+                            title={event.name}
+                            dates={event.dates.start.localDate}
+                            image={event.images[0].url}
+                            note={event.pleaseNote}
+                            key={event.id}
+                            locationName={event._embedded.venues[0].name}
+                            // tickets={event._embedded.attractions[0].url}
+                            locationAddress={event._embedded.venues[0].address.line1}
+                            locationCity={event._embedded.venues[0].city.name}
+                            locationPostalCode={event._embedded.venues[0].postalCode}
+                            locationState={event._embedded.venues[0].state.name}
+                            locationDistance={event._embedded.venues[0].distance}
+                            locationDistanceUnits={event._embedded.venues[0].units}
+                        />
+
+
+                        )
+                    })}
+                </div>
+
+
+            </Container >
+
         )
     }
 
