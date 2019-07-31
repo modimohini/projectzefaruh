@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
+import MuiThemeProvider from 'material-ui/core/styles/MuiThemeProvider';
+//import AppBar from 'material-ui/AppBar';
+import TextField from 'material-ui/core/TextField';
+import RaisedButton from 'material-ui/coreRaisedButton';
 
 export class FormUserDetails extends Component {
   continue = e => {
@@ -15,7 +15,7 @@ export class FormUserDetails extends Component {
     return (
       <MuiThemeProvider>
         <React.Fragment>
-          <AppBar title="Enter User Details" />
+         {/*  <AppBar title="Enter User Details" /> */}
           <TextField
             hintText="Enter Your First Name"
             floatingLabelText="First Name"
