@@ -133,13 +133,13 @@ class Home extends Component {
                                 }}
                                 InputProps={{
                                     disableUnderline: true
-                                  }}
-                                 
+                                }}
 
-                           
+
+
                             />
                         </div>
-                        <div className="col m6">
+                        <div className="col m6 s12">
 
                             <TextField
                                 name="eventLocationSearched"
@@ -157,8 +157,8 @@ class Home extends Component {
                                 }}
                                 InputProps={{
                                     disableUnderline: true
-                                  }}
-                                
+                                }}
+
                             //  label="eventSearch"
                             />
                         </div>
@@ -166,54 +166,55 @@ class Home extends Component {
                     </div>
 
                     <div className="row">
-                        <div className="col m4">
+                        <div className="col m4 s12">
                             <DatePicker
                                 selectedDate={this.state.selectedDate}
                                 setSelectedDate={this.setSelectedDate}
                             // name="selectedDate"
                             />
                         </div>
-                        <div className="col m4">
+                        <div className="col m4 s12">
 
                             <TimePicker
                                 selectedDate={this.state.selectedDate}
                                 setSelectedDate={this.setSelectedDate} />
                         </div>
-                        <div className="col m4">
+                        <div className="col m4 s12">
                             <CategoryInput />
 
                         </div>
+                        <SearchButton
+                            onClick={(event) => this.handleSubmit(event)} />
                     </div>
 
-                    <SearchButton
-                        onClick={(event) => this.handleSubmit(event)} />
-                    <Container>
-                        {this.state.events.map(event => {
-                            return (<ResultCard
-                                expanded={this.state.expanded}
-                                handleExpandClick={this.setExpanded}
-                                handleUnExpandClick={this.setUnExpanded}
-                                title={event.name}
-                                dates={event.dates.start.localDate}
-                                image={event.images[0].url}
-                                note={event.pleaseNote}
-                                key={event.id}
-                                locationName={event._embedded.venues[0].name}
-                                // tickets={event._embedded.attractions[0].url}
-                                locationAddress={event._embedded.venues[0].address.line1}
-                                locationCity={event._embedded.venues[0].city.name}
-                                locationPostalCode={event._embedded.venues[0].postalCode}
-                                locationState={event._embedded.venues[0].state.name}
-                                locationDistance={event._embedded.venues[0].distance}
-                                locationDistanceUnits={event._embedded.venues[0].units}
-                            />
+                 
+                        <div className="card-columns">
+                            {this.state.events.map(event => {
+                                return (<ResultCard
+                                    expanded={this.state.expanded}
+                                    handleExpandClick={this.setExpanded}
+                                    handleUnExpandClick={this.setUnExpanded}
+                                    title={event.name}
+                                    dates={event.dates.start.localDate}
+                                    image={event.images[0].url}
+                                    note={event.pleaseNote}
+                                    key={event.id}
+                                    locationName={event._embedded.venues[0].name}
+                                    // tickets={event._embedded.attractions[0].url}
+                                    locationAddress={event._embedded.venues[0].address.line1}
+                                    locationCity={event._embedded.venues[0].city.name}
+                                    locationPostalCode={event._embedded.venues[0].postalCode}
+                                    locationState={event._embedded.venues[0].state.name}
+                                    locationDistance={event._embedded.venues[0].distance}
+                                    locationDistanceUnits={event._embedded.venues[0].units}
+                                />
 
 
-                            )
-                        })}
+                                )
+                            })}
+                        </div>
 
-
-                    </Container>
+                   
                 </Container >
             </>
         )
