@@ -6,7 +6,11 @@ import TextField from '@material-ui/core/TextField';
 import DatePicker from '../Components/DatePicker'
 import CategoryInput from "../Components/CategoryInput"
 import SearchButton from "../Components/Button"
-
+import Confirm from "../Components/Confirm"
+import FormPersonalDetails from "../Components/FormPersonalDetails"
+import FormUserDetails from "../Components/FormUserDetails"
+import Success from "../Components/Success"
+import UserForm from "../Components/UserForm"
 
 class Home extends Component {
 
@@ -65,6 +69,11 @@ render() {
                 <DatePicker/>
                 <CategoryInput/>
                 <SearchButton/>
+                <Confirm/>
+                <FormPersonalDetails/>
+                <FormUserDetails/>
+                <Success/>
+                <UserForm/>
             
                 {/* 
 THIS IS THE SIGN!!!!!!!!!!! */}

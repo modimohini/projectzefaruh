@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import Home from "./Pages/Home"
-import Nav from "./Components/Nav"
+import Home from "./Pages/Home";
+import Nav from "./Components/Nav";
+import UserForm from "./Components/UserForm";
 import "./App.css";
 
 
@@ -17,7 +18,8 @@ class App extends Component {
 
       
       <Route exact path="/" component={Home} /> 
-      <Route exact path="/myaccount" component={UserPage} /> 
+      <Route exact path="/myaccount" component={UserPage} />
+      <Route exact path="/signup" component={UserForm} />
      
       <Home/>
 
