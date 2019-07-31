@@ -1,5 +1,5 @@
 import React from 'react';
-import clsx from 'clsx';
+
 import { makeStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
@@ -78,51 +78,7 @@ export default function OutlinedTextFields() {
           </MenuItem>
         ))}
       </TextField>
-      {/* <TextField
-        id="outlined-select-Category-native"
-        select
-        label="Native select"
-        
-        className={classes.textField}
-        value={values.Category}
-        onChange={handleChange('Category')}
-        SelectProps={{
-          native: true,
-          MenuProps: {
-            className: classes.menu,
-          },
-        }}
-        helperText="Please select your Category"
-        margin="normal"
-        variant="outlined"
-      >
-        {categories.map(option => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </TextField>
-      <TextField
-        id="outlined-full-width"
-        label="Label"
-        style={{ margin: 8 }}
-        placeholder="Placeholder"
-        helperText="Full width!"
-        fullWidth
-        margin="normal"
-        variant="outlined"
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
-      <TextField
-        id="outlined-bare"
-        className={classes.textField}
-        defaultValue="Bare"
-        margin="normal"
-        variant="outlined"
-        inputProps={{ 'aria-label': 'bare' }}
-      /> */}
+     
     </form>
   );
 }
