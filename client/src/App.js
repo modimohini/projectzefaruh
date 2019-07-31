@@ -15,9 +15,6 @@ import UserPage from "./Pages/UserPage";
 require('dotenv').config()
 
 
-
-
-
 class App extends Component {
 
   
@@ -33,7 +30,6 @@ class App extends Component {
      
         <Switch>
 
-      
       <Route exact path="/" component={Home} /> 
       <Route exact path="/myaccount" component={UserPage} /> 
      
