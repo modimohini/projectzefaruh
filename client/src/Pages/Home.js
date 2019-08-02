@@ -17,14 +17,6 @@ import Geohash from 'latlon-geohash';
 import TimePicker from "../Components/TimePicker";
 var moment = require('moment');
 
-//  var latlon;
-//  var showPosition;
-//  var showError
-
-
-
-
-
 class Home extends Component {
     constructor() {
         super()
@@ -64,9 +56,7 @@ class Home extends Component {
             }
         )
     }
-    searchTicketMaster = (query, query2, query3, query4) => {
-         console.log("geohash" + this.state.geohash)
-         console.log("coords" + this.state.lat + this.state.lng)
+    searchThruDatabase = (query, query2, query3, query4) => {
         API.search(query, query2, query3, query4)
         .then(res => {
         var events = res.data._embedded.events
@@ -77,31 +67,6 @@ class Home extends Component {
     })
         .catch(err => console.log(err));
         };
-
-    // eventBriteSearch = (query) => {
-    //     console.log("geohash" + this.state.geohash)
-    //     console.log("coords" + this.state.lat + this.state.lng)
-    //     API.searchEventBrite(query)
-    //         .then(res => {
-    //             var events = res.data.events
-    //             console.log({ events });
-    //             this.setState({
-    //                 events: res.data.events
-    //             })
-    //         })
-    //         .catch(err => console.log(err));
-    // };
-    // searchEventsTradeGov = (query) => {
-    //     API.searchTradeGov(query)
-    //         .then(res => {
-    //             var events = res.data.events
-    //             console.log({ events });
-    //             // this.setState({ 
-    //             //     events: res.data.events
-    //             // })
-    //         })
-    //         .catch(err => console.log(err));
-    // };
 
 
     handleInputChange = event => {
@@ -118,7 +83,6 @@ class Home extends Component {
 
     setExpanded = () => {
         if (this.state.expanded === false) {
-
             this.setState({ expanded: true });
             console.log("this needs to expand")
         }
@@ -131,8 +95,7 @@ class Home extends Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        this.searchTicketMaster(this.state.eventSearched, this.state.geohash, this.state.eventLocationSearched, moment(this.state.selectedDate).format('YYYY[-]MM[-]DDTHH:mm:ss'))
-        // this.eventBriteSearch(this.state.eventSearched)
+        this.searchThruDatabase(this.state.eventSearched, this.state.geohash, this.state.eventLocationSearched, moment(this.state.selectedDate).format('YYYY[-]MM[-]DDTHH:mm:ss'))
         console.log("event searched state ", this.state.eventSearched, "event date: ", moment(this.state.selectedDate).format('YYYY MM DDTHH:mm:ss'))
     }
 
@@ -216,9 +179,6 @@ class Home extends Component {
 
 
                 <div className="card-columns">
-
-
-
                     {/* {this.state.events.map(event => {
                         return (<ResultCard
                             title={event.name.text}

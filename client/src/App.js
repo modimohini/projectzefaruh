@@ -13,10 +13,9 @@ import "./App.css";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import UserPage from "./Pages/UserPage";
+import SignUp from "./Pages/SignUp";
+import SignIn from "./Pages/SignIn";
 require('dotenv').config()
-
-
-
 
 
 class App extends Component {
@@ -34,10 +33,10 @@ class App extends Component {
      
         <Switch>
 
-      
       <Route exact path="/" component={Home} /> 
-      <Route exact path="/myaccount" component={UserPage} />
-      <Route exact path="/signup" component={UserForm} />
+      <Route exact path="/myaccount" component={UserPage} /> 
+      <Route exact path ="/signUp" component= {SignUp}/>
+      <Route exact path ="/signIn" component= {SignIn}/>
      
       <Home/>
 
